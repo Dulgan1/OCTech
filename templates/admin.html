@@ -20,7 +20,8 @@
         {% if error %}
             <h4>{{ error }}</h4>
         {% endif %}
-        <form id="registration-form" action="{{ url_for('app_view.admin') }}" method="POST">
+	<h4>{{ url_for('post_paging') }}</h4>
+        <form id="registration-form" action="{{ url_for('admin') }}" method="POST">
             <label for="blog_title"> Title:
                 {% if title %}
                 <input type="text" id="blog_title" name="title" placeholder="Title of blog" value="{{ title }}" required>
@@ -35,6 +36,14 @@
                 <input type="text" id="blog_dex" name="dex" placeholder="Short description of blog" required>
                 {% endif %}
             </label><br><br>
+            <label for="blog_cat"> Category:
+                {% if category %}
+                <input type="text" id="blog_cat" name="cat_list" placeholder="Category seperated by comma" value="{{ category }}" required>
+                {% else %}
+                <input type="text" id="blog_cat" name="cat_list" placeholder="Category seperated by comma" required>
+                {% endif %}
+                
+            </label><p>Category Options: Jobs, Scholarships, Grants, Competitions, Crypto Update<p><br><br>
             <label for="blog_tags"> Tags:
                 {% if tags %}
                 <input type="text" id="blog_tags" name="tags" placeholder="Tags seperated by comma" value="{{ tags }}" required>
@@ -57,7 +66,7 @@
             <br>
             <input type="submit" value="Submit">
             
-        </form><a href="{{ url_for('app_view.index') }}"><button>Home</button></a>
+        </form><a href="{{ url_for('index') }}"><button>Home</button></a>
         <!--<script src="" async defer></script>-->
     </body>
 </html>
