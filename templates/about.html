@@ -15,40 +15,32 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vendor.css') }}", type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}", type="text/css">
 
     <!-- script
     ================================================== -->
-    <script src="js/modernizr.js"></script>
-    <script defer src="js/fontawesome/all.min.js"></script>
+    <script src="{{ url_for('static', filename='js/modernizr.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/fontawesome/all.min.js') }}"></script>
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
 
 </head>
 
 <body id="top">
-
-
-    <!-- preloader
-    ================================================== -->
-    <div id="preloader"> 
-    	<div id="loader"></div>
-    </div>
-
 
     <!-- header
     ================================================== -->
     <header class="s-header s-header--opaque">
 
         <div class="s-header__logo">
-            <a class="logo" href="index.html">
-                <img src="images/logo.svg" alt="Homepage">
+            <a class="logo" href="{{ url_for('index', _external=True) }}">
+		    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Homepage">
             </a>
         </div>
 
@@ -59,19 +51,20 @@
                 <h3 class="s-header__nav-heading h6">Navigate to</h3>
 
                 <ul class="s-header__nav">
-                    <li><a href="index.html" title="">Home</a></li>
+                    <li class="current"><a href="{{ url_for('index', _external=True) }}" title="">Home</a></li>
                     <li class="has-children">
                         <a href="#0" title="">Categories</a>
                         <ul class="sub-menu">
-                            <li><a href="category.html">Jobs</a></li>
-                            <li><a href="category.html">Scholarships</a></li>
-                            <li><a href="category.html">Grants</a></li>
-                            <li><a href="category.html">Remote Jobs</a></li>
-                            <li><a href="category.html">Competitions</a></li>
+                            <li><a href="{{ url_for('category', category='Jobs', _external=True) }}">Jobs</a></li>
+                            <li><a href="{{ url_for('category', category='Scholarships', _external=True) }}">Scholarships</a></li>
+                            <li><a href="{{ url_for('category', category='Grants', _external=True) }}">Grants</a></li>
+                            <li><a href="{{ url_for('category', category='Competitions', _external=True) }}">Competitions</a></li>
+                            <li><a href="{{ url_for('category', category='Crypto Updates', _external=True) }}">Crypto News</a></li>
                         </ul>
                     </li>
-                    <li class="current"><a href="about.html" title="">About</a></li>
-                    <li><a href="contact.html" title="">Contact</a></li>
+                    
+                    <li><a href="{{ url_for('about')}}" title="">About</a></li>
+                    <li><a href="{{ url_for('contact')}}" title="">Contact</a></li>
                 </ul> <!-- end s-header__nav -->
 
                 <a href="#0" title="Close Menu" class="s-header__overlay-close close-mobile-menu">Close</a>
@@ -87,10 +80,10 @@
             <div class="s-header__search-inner">
                 <div class="row wide">
 
-                    <form role="search" method="get" class="s-header__search-form" action="#">
+                    <form role="search" method="POST" class="s-header__search-form" action="{{ url_for('search') }}">
                         <label>
                             <span class="h-screen-reader-text">Search for:</span>
-                            <input type="search" class="s-header__search-field" placeholder="Search for..." value="" name="s" title="Search for:" autocomplete="off">
+                            <input type="search" class="s-header__search-field" placeholder="Search for..." value="" name="query" title="Search for:" autocomplete="off">
                         </label>
                         <input type="submit" class="s-header__search-submit" value="Search"> 
                     </form>
@@ -119,15 +112,14 @@
                 <article class="s-content__entry">
 
                     <div class="s-content__media">
-                        <img src="images/thumbs/about/about-1050.jpg" 
-                                srcset="images/thumbs/about/about-2100.jpg 2100w, 
-                                        images/thumbs/about/about-1050.jpg 1050w, 
-                                        images/thumbs/about/about-525.jpg 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
-
+                        <img src="{{ url_for('static', filename='images/thumbs/about/about-1050.jpg') }}" 
+                                srcset="{{ url_for('static', filename='images/thumbs/about/about-2100.jpg') }} 2100w, 
+                                        {{ url_for('static', filename='images/thumbs/about/about-1050.jpg') }} 1050w, 
+                                        {{ url_for('static', filename='images/thumbs/about/about-525.jpg') }} 525w" sizes="(max-width: 2100px) 100vw, 2100px" alt="">
                     </div> <!-- end s-content__media -->
 
                     <div class="s-content__entry-header">
-                        <h1 class="s-content__title">Learn More About Story.</h1>
+                        <h1 class="s-content__title">About OC.Tech</h1>
                     </div> <!-- end s-content__entry-header -->
 
                     <div class="s-content__primary">
@@ -214,30 +206,13 @@
 
             <div class="row">
 
-                <div class="column large-3 medium-6 tab-12 s-footer__info">
-
-                    <h5>About Our Site</h5>
-
-                    <p>
-                    Lorem ipsum Ut velit dolor Ut labore id fugiat in ut 
-                    fugiat nostrud qui in dolore commodo eu magna Duis 
-                    cillum dolor officia esse mollit proident Excepteur 
-                    exercitation nulla. Lorem ipsum In reprehenderit 
-                    commodo aliqua irure.
-                    </p>
-
-                </div> <!-- end s-footer__info -->
-
                 <div class="column large-2 medium-3 tab-6 s-footer__site-links">
 
                     <h5>Site Links</h5>
 
                     <ul>
-                        <li><a href="#0">About Us</a></li>
-                        <li><a href="#0">Blog</a></li>
-                        <li><a href="#0">FAQ</a></li>
-                        <li><a href="#0">Terms</a></li>
-                        <li><a href="#0">Privacy Policy</a></li>
+                        <li><a href="{{ url_for('contact')}}">Contact Us</a></li>
+                        <li><a href="{{ url_for('p_policy')}}">Privacy Policy</a></li>
                     </ul>
 
                 </div> <!-- end s-footer__site-links -->  
@@ -249,34 +224,11 @@
                     <ul>
                         <li><a href="#0">Twitter</a></li>
                         <li><a href="#0">Facebook</a></li>
-                        <li><a href="#0">Dribbble</a></li>
-                        <li><a href="#0">Pinterest</a></li>
                         <li><a href="#0">Instagram</a></li>
                     </ul>
 
                 </div> <!-- end s-footer__social links --> 
 
-                <div class="column large-3 medium-6 tab-12 s-footer__subscribe">
-
-                    <h5>Sign Up for Newsletter</h5>
-
-                    <p>Signup to get updates on articles, interviews and events.</p>
-
-                    <div class="subscribe-form">
-                
-                        <form id="mc-form" class="group" novalidate="true">
-
-                            <input type="email" value="" name="dEmail" class="email" id="mc-email" placeholder="Your Email Address" required=""> 
-                
-                            <input type="submit" name="subscribe" value="subscribe" >
-                
-                            <label for="mc-email" class="subscribe-message"></label>
-                
-                        </form>
-
-                    </div>
-
-                </div> <!-- end s-footer__subscribe -->
 
             </div> <!-- end row -->
 
@@ -286,8 +238,8 @@
             <div class="row">
                 <div class="column">
                     <div class="ss-copyright">
-                        <span>© Copyright Calvin 2020</span> 
-                        <span>Design by <a href="https://www.styleshout.com/">StyleShout</a></span>
+                        <span>© Copyright OC.Tech (Opportunity Centre Tech) 2024</span> 
+                        <span>Design Template by <a href="https://www.styleshout.com/">StyleShout</a></span>
                     </div> <!-- end ss-copyright -->
                 </div>
             </div> 
@@ -304,9 +256,11 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="js/jquery-3.5.0.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.5.0.min.js') }}">
+
+    </script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 

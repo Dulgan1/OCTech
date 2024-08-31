@@ -71,8 +71,8 @@
                         </ul>
                     </li>
                     
-                    <li><a href="about.html" title="">About</a></li>
-                    <li><a href="contact.html" title="">Contact</a></li>
+                    <li><a href="{{ url_for('about')}}" title="">About</a></li>
+                    <li><a href="{{ url_for('contact')}}" title="">Contact</a></li>
                 </ul> <!-- end s-header__nav -->
 
                 <a href="#0" title="Close Menu" class="s-header__overlay-close close-mobile-menu">Close</a>
@@ -380,6 +380,5 @@
     </script>
     <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/api.js') }}"></script>
 </body>
 </html>

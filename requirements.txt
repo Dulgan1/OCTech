@@ -1,2 +1,5 @@
-Flask
-PyMongo
+flask
+pymongo
+Flask-WTF
+flask_ckeditor
+flask_cors

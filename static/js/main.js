@@ -115,9 +115,7 @@
 
             siteBody.classList.add('search-is-visible');
             document.querySelector('.s-content').style.filter = "blur(5px)";
-            /*setTimeout(function(){
-                searchWrap.querySelector('.s-header__search-field').focus();
-            }, 100); */
+            /*searchWrap.querySelector('.s-header__search-field').focus();*/
             searchWrap.querySelector('.s-header__search-field').focus();
         });
 
@@ -127,9 +125,7 @@
             if(siteBody.classList.contains('search-is-visible')) {
                 siteBody.classList.remove('search-is-visible');
                 document.querySelector('.s-content').style.filter = "blur(0px)";
-                setTimeout(function(){
-                    searchWrap.querySelector('.s-header__search-field').blur();
-                }, 100);
+                searchWrap.querySelector('.s-header__search-field').blur();
             }
         });
 
@@ -302,16 +298,13 @@
     $('.pgn__num.idx, .pgn__next.idx, .pgn__prev.idx').click(function () {
         const page_size = 12;
         let page_no = 0;
-        console.log($(this).text());
 
         if ($(this).text() == 'Next') {
             var isNext = true;
             page_no = parseInt($('.pgn__num.idx.current').text()) + 1;
-            console.log('Text of current should work for next');
         } else if ($(this).text() == 'Prev' && parseInt($('.pgn__num.idx.first').text()) > 1) {
             var isPrev = true;
             page_no = parseInt($('.pgn__num.idx.current').text()) - 1;
-            console.log('Text of current should work for prev');
         } else {
             page_no = parseInt($(this).text());
         }
@@ -326,18 +319,16 @@
             contentType: 'application/json',
             dataType: 'json',
             success: function (page_posts) {
-                console.log(page_posts);
                 if (!page_posts) {
                     return;
                 } else {
                     if (page_posts.data) {
                         $('article.brick.entry').remove();
                         for (const i in page_posts.data) {
-                            console.log((page_posts.data)[i]);
                             const artHtml = `<article class="brick entry" data-aos="fade-up">
     
                         <div class="entry__thumb">
-                            <a href="${$('a.logo').attr('href')}${(page_posts.data)[i].route}" class="thumb-link">
+                            <a href="${$('a.logo').attr('href')}post/${(page_posts.data)[i].route}" class="thumb-link">
                                 <img src="${(page_posts.data)[i].image_url}" 
                                      srcset="images/thumbs/masonry/macbook-600.jpg 1x, images/thumbs/masonry/macbook-1200.jpg 2x" alt="">
                             </a>
@@ -345,7 +336,7 @@
     
                         <div class="entry__text">
                             <div class="entry__header">
-                                <h1 class="entry__title"><a href="${$('a.logo').attr('href')}${(page_posts.data)[i].route}">${(page_posts.data)[i].title}</a></h1>
+                                <h1 class="entry__title"><a href="${$('a.logo').attr('href')}post/${(page_posts.data)[i].route}">${(page_posts.data)[i].title}</a></h1>
                                 
                                 <div class="entry__meta">
                                     <span class="byline"">By:
@@ -362,7 +353,7 @@
                                 ${(page_posts.data)[i].dex}
                                 </p>
                             </div>
-                            <a class="entry__more-link" href="${$('a.logo').attr('href')}${(page_posts.data)[i].route}">Read More</a>
+                            <a class="entry__more-link" href="${$('a.logo').attr('href')}post/${(page_posts.data)[i].route}">Read More</a>
                         </div> <!-- end entry__text -->
                     
                     </article>`;
@@ -380,7 +371,6 @@
                     });
                 } else {
                     $('a.pgn__num.idx.current').removeClass('current');
-                    console.log('remove class should work');
                     $(this).addClass(function () {
                         console.log(`${$(this).text()} : is the current page.`);
                         return 'current';
@@ -397,16 +387,13 @@
         $('.pgn__num.cat, .pgn__next.cat, .pgn__prev.cat').click(function () {
         const page_size = 12;
         let page_no = 0;
-        console.log($(this).text());
 
         if ($(this).text() == 'Next') {
             var isNext = true;
             page_no = parseInt($('.pgn__num.cat.current').text()) + 1;
-            console.log('Text of current should work for next');
         } else if ($(this).text() == 'Prev' && parseInt($('.pgn__num.cat.first').text()) > 1) {
             var isPrev = true;
             page_no = parseInt($('.pgn__num.cat.current').text()) - 1;
-            console.log('Text of current should work for prev');
         } else {
             page_no = parseInt($(this).text());
         }
@@ -421,14 +408,12 @@
             contentType: 'application/json',
             dataType: 'json',
             success: function (page_posts) {
-                console.log(page_posts);
                 if (!page_posts) {
                     return;
                 } else {
                     if (page_posts.data) {
                         $('article.brick.entry').remove();
                         for (const i in page_posts.data) {
-                            console.log((page_posts.data)[i]);
                             const artHtml = `<article class="brick entry" data-aos="fade-up">
     
                         <div class="entry__thumb">

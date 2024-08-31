@@ -102,6 +102,19 @@ def post_paging_cat(category):
 
 #================================END API======================================#
 
+@app.route('/about', strict_slashes=False)
+def about():
+    return render_template('about.html')
+
+@app.route('/contact', strict_slashes=False)
+def contact():
+    return render_template('contact.html')
+
+@app.route('/privacy', strict_slashes=False)
+def p_policy():
+    return render_template('p_policy.html')
+
+
 @app.route('/search', strict_slashes=False, methods=['GET', 'POST'])
 def search():
     db = db_client[getenv('MAIN_DB')]
