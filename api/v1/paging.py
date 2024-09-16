@@ -3,7 +3,7 @@ from app import db_client
 from flask import jsonify, request, make_responce, abort
 from os import getenv
 from pymongo import DESCENDING
-import maths
+import math
 
 def index_range(page: int, page_size: int) -> tuple:
     """The function should return a tuple of size two containing
@@ -48,7 +48,7 @@ def post_paging():
 
     #abort(400, 'Missing page data')
 
-@api_views.route('/page/category/<category>', strict_slashes=False, methods=['POST'])
+@api_view.route('/page/category/<category>', strict_slashes=False, methods=['POST'])
 def post_paging_cat(category):
     if request.get_json():
         p_list = []
